@@ -1,0 +1,30 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:17
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - ./data/db:/var/lib/postgresql/data:Z
+    networks:
+      - default
+
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: berichtsheft:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+    networks:
+      - default

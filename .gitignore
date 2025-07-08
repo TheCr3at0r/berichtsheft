@@ -1,0 +1,8 @@
+.venv
+.env
+berichtsheft/static/images/logo.png
+berichtsheft/static/images/signature_student.png
+berichtsheft/static/images/signature_trainer.png
+data/*
+__pycache__
+.DS_Store
